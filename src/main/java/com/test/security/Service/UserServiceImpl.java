@@ -1,6 +1,7 @@
 package com.test.security.Service;
 
 import com.test.security.Repository.MemberRepository;
+import com.test.security.dto.LoginRequestDto;
 import com.test.security.dto.Member;
 import com.test.security.dto.MemberInfoDto;
 import com.test.security.util.JwtUtil;
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public String login(Member memberDTO) {
+    public String login(LoginRequestDto memberDTO) {
         String id = memberDTO.getId();
         String password = memberDTO.getPassword();
         Member member = memberRepository.findMemberById(id);

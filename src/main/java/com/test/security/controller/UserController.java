@@ -1,6 +1,7 @@
 package com.test.security.controller;
 
 import com.test.security.Service.UserService;
+import com.test.security.dto.LoginRequestDto;
 import com.test.security.dto.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Member memberDTO) {
+    public ResponseEntity<?> login(@RequestBody LoginRequestDto memberDTO) {
         String token = userService.login(memberDTO);
         return ResponseEntity.status(HttpStatus.OK).body(token);
     }
