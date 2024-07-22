@@ -22,7 +22,7 @@ public class JwtUtil {
     private final long accessTokenExpirationTime;
 
     public JwtUtil(
-            @Value("${jwt.secret") String secretKey,
+            @Value("${jwt.secret}") String secretKey,
             @Value("${jwt.expiration_time}") long accessTokenExpirationTime
     ) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);

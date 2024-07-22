@@ -4,6 +4,7 @@ import com.test.security.Repository.MemberRepository;
 import com.test.security.dto.LoginRequestDto;
 import com.test.security.dto.Member;
 import com.test.security.dto.MemberInfoDto;
+import com.test.security.dto.SignUpMemberDto;
 import com.test.security.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -18,6 +19,16 @@ public class UserServiceImpl implements UserService {
     private final JwtUtil jwtUtil;
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public String signUp(SignUpMemberDto signUpMemberDto) {
+        System.out.println("DTO = " + signUpMemberDto);
+        return memberRepository.save(new Member(
+            signUpMemberDto.getId(),
+            passwordEncoder.encode(signUpMemberDto.getPassword()),
+            "Basic")
+        ).getId();
+    }
 
     @Override
     public String login(LoginRequestDto memberDTO) {
